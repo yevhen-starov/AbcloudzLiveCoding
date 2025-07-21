@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36310.24 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abcloudz.WebAPI", "Abcloudz.WebAPI\Abcloudz.WebAPI.csproj", "{BB224114-91EF-4FD3-946E-A50029CB115E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Abcloudz.Test\Test\Test.csproj", "{109324F9-E880-4388-AB52-1F2E091F6D5E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BB224114-91EF-4FD3-946E-A50029CB115E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB224114-91EF-4FD3-946E-A50029CB115E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB224114-91EF-4FD3-946E-A50029CB115E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{109324F9-E880-4388-AB52-1F2E091F6D5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{109324F9-E880-4388-AB52-1F2E091F6D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{109324F9-E880-4388-AB52-1F2E091F6D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{109324F9-E880-4388-AB52-1F2E091F6D5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
