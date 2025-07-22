@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Abcloudz.Core\Abcloudz.Core.csproj" />
     <ProjectReference Include="..\Abcloudz.DAL\Abcloudz.DAL.csproj" />
   </ItemGroup>
 

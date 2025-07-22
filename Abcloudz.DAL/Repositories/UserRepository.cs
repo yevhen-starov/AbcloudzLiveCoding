@@ -3,11 +3,11 @@ using Abcloudz.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Abcloudz.DAL.Repositories;
-public class UserRepository : IUserRepository
+public class UserRepository : BaseRepository<UserModel, int>, IUserRepository
 {
     private readonly AppDbContext _context;
 
-    public UserRepository(AppDbContext context)
+    public UserRepository(AppDbContext context) : base(context)
     {
         _context = context;
     }

@@ -2,7 +2,7 @@
 
 namespace Abcloudz.DAL.Interfaces;
 
-public interface IUserRepository
+public interface IUserRepository : IBaseRepository<UserModel, int>
 {
     Task AddAsync(UserModel user);
     Task<List<UserModel>> GetUsersAsync(int pageNumber, int pageSize, string? search);

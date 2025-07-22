@@ -1,4 +1,5 @@
 using Abcloudz.WebAPI;
+using Abcloudz.WebAPI.Configuration;
 using Abcloudz.WebAPI.Filters;
 using Abcloudz.WebAPI.Validations.Users;
 using FluentValidation.AspNetCore;
@@ -19,6 +20,8 @@ builder.Services.AddControllers(options =>
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<StorageSettings>(builder.Configuration.GetSection("StorageSettings"));
 
 builder.Services.AddAutoMapper(typeof(Program));
 

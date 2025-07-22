@@ -1,4 +1,5 @@
-﻿using Abcloudz.Models.Models;
+﻿using Abcloudz.Models.Interfaces;
+using Abcloudz.Models.Models;
 using Abcloudz.WebAPI.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ namespace Abcloudz.DAL
     public class AppDbContext : DbContext
     {
         public DbSet<UserModel> Users => Set<UserModel>();
+        public DbSet<UserDocumentModel> UserDocuments => Set<UserDocumentModel>();  
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options) { }
@@ -19,21 +21,18 @@ namespace Abcloudz.DAL
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            var entries = ChangeTracker.Entries<BaseEntity>();
-
-            foreach (var entry in entries)
+            foreach (var entry in ChangeTracker.Entries<ICreatable>().Where(e => e.State == EntityState.Added))
             {
-                if (entry.State == EntityState.Added)
-                {
-                    entry.Entity.CreatedDate = DateTime.UtcNow;
-                }
-                else if (entry.State == EntityState.Modified)
-                {
-                    entry.Entity.UpdatedDate = DateTime.UtcNow;
-                }
+                entry.Entity.CreatedDate = DateTime.UtcNow;
+            }
+
+            foreach (var entry in ChangeTracker.Entries<IUpdatable>().Where(e => e.State == EntityState.Modified))
+            {
+                entry.Entity.UpdatedDate = DateTime.UtcNow;
             }
 
             return await base.SaveChangesAsync(cancellationToken);
         }
+
     }
 }

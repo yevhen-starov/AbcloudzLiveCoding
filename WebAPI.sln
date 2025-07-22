@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abcloudz.DAL", "Abcloudz.DA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abcloudz.Models", "Abcloudz.Models\Abcloudz.Models.csproj", "{3FBFA259-EACD-4431-A696-152A191318E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abcloudz.Core", "Abcloudz.Core\Abcloudz.Core.csproj", "{4FFA295A-DFAA-4C2F-AC6C-6EDD51420C55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3FBFA259-EACD-4431-A696-152A191318E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FBFA259-EACD-4431-A696-152A191318E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FBFA259-EACD-4431-A696-152A191318E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FFA295A-DFAA-4C2F-AC6C-6EDD51420C55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FFA295A-DFAA-4C2F-AC6C-6EDD51420C55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FFA295A-DFAA-4C2F-AC6C-6EDD51420C55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FFA295A-DFAA-4C2F-AC6C-6EDD51420C55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
