@@ -1,8 +1,9 @@
-﻿namespace Abcloudz.WebAPI.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Abcloudz.WebAPI.Dto
 {
-    public class UserModel
+    public class CreateUserRequest
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }

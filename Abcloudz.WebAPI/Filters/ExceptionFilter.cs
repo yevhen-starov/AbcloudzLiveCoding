@@ -6,16 +6,42 @@ namespace Abcloudz.WebAPI.Filters
 {
     public class ExceptionFilter : IExceptionFilter
     {
+        private readonly ILogger<ExceptionFilter> _logger;
+        private readonly IHostEnvironment _env;
+
+        public ExceptionFilter(ILogger<ExceptionFilter> logger, IHostEnvironment env)
+        {
+            _logger = logger;
+            _env = env;
+        }
+
         public void OnException(ExceptionContext context)
         {
-            var error = new ErrorModel
-            (
-                500,
-                context.Exception.Message,
-                context.Exception.StackTrace?.ToString()
-            );
+            _logger.LogError(context.Exception, "Unhandled exception occurred.");
 
-            context.Result = new JsonResult(error);
+            ErrorModel error;
+
+            if (_env.IsDevelopment())
+            {
+                error = new ErrorModel(
+                    500,
+                    context.Exception.Message,
+                    context.Exception.StackTrace
+                );
+            }
+            else
+            {
+                error = new ErrorModel(
+                    500,
+                    "An unexpected error occurred. Please contact support.",
+                    null
+                );
+            }
+
+            context.Result = new JsonResult(error)
+            {
+                StatusCode = 500
+            };
         }
     }
 }

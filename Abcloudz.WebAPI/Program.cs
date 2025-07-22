@@ -1,41 +1,29 @@
+using Abcloudz.WebAPI;
 using Abcloudz.WebAPI.Filters;
-using Abcloudz.WebAPI.Repositories;
+using Abcloudz.WebAPI.Validations.Users;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var startup = new Startup(builder.Configuration);
+
+startup.ConfigureInfrastructure(builder.Services);
+
+startup.ConfigureCore(builder.Services);
 
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add<ExceptionFilter>();
-});
+}).AddFluentValidation(fv =>
+        fv.RegisterValidatorsFromAssemblyContaining<CreateUserRequestValidator>());
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-
-builder.Services.AddSingleton<IUserRepository, UserRepository>();
-builder.Services.AddScoped<ExceptionFilter>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
-
-
-
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+startup.Configure(app, app.Environment);
 
 app.Run();

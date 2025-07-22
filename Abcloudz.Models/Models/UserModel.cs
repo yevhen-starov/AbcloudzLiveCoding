@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Abcloudz.Models.Models;
 
-namespace Abcloudz.WebAPI.ViewModels
+namespace Abcloudz.WebAPI.Models
 {
-    public class UserViewModel
+    public class UserModel: BaseEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
