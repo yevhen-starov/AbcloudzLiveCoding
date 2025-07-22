@@ -18,7 +18,6 @@ public class UserRepository : IUserRepository
         await _context.SaveChangesAsync();
     }
 
-
     public async Task<List<UserModel>> GetUsersAsync(int pageNumber, int pageSize, string? search)
     {
         var query = _context.Users
@@ -41,5 +40,12 @@ public class UserRepository : IUserRepository
                 Email = u.Email
             })
             .ToListAsync();
+    }
+
+    public async Task<bool> IsExistAsync(string userName, string email)
+    {
+        return await _context.Users
+            .AnyAsync(u => u.Name.ToLower() == userName.ToLower()
+                   || u.Email.ToLower() == email.ToLower());
     }
 }

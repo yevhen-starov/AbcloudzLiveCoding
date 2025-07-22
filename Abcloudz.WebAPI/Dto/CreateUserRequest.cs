@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Abcloudz.WebAPI.Dto
+﻿namespace Abcloudz.WebAPI.Dto
 {
     public class CreateUserRequest
     {

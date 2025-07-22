@@ -31,9 +31,9 @@ namespace Abcloudz.WebAPI.Controllers
 
         [HttpGet]
         [Route("users")]
-        public async Task<IActionResult> Users(int pageNumber = 1, int pageSize = 10, string? search = null)
+        public async Task<IActionResult> Users([FromQuery] UserFilter filter)
         {
-            var query = new GetUsersQuery(pageNumber, pageSize, search);
+            var query = new GetUsersQuery(filter);
             var users = await _mediator.Send(query);
 
             return Ok(users);
