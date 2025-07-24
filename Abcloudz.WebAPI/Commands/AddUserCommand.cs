@@ -5,8 +5,9 @@ namespace Abcloudz.WebAPI.Commands;
 
 public class AddUserCommand(UserRepository userRepository)
 {
-    public void Handle(AddUserDto userDto)
+    public Task Handle(AddUserDto userDto)
     {
-        userRepository.AddUser(new User { Name = userDto.Name, Email = userDto.Email, Password = userDto.Password });
+        return userRepository.AddUser(
+            new User { Name = userDto.Name, Email = userDto.Email, Password = userDto.Password });
     }
 }

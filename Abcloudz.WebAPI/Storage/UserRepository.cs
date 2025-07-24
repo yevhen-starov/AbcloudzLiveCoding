@@ -2,23 +2,14 @@ using Abcloudz.WebAPI.Domain;
 
 namespace Abcloudz.WebAPI.Storage;
 
-public class UserRepository
+public class UserRepository(IDataStorage<User> usersStorage)
 {
-    private DbContext _context;
-    
-    public UserRepository(DbContext _context)
-    {
-        this._context = _context;
-    }
-    
-    public IEnumerable<User> GetUsers()
-    {
-        return _context.Users;
-    }
+    public Task<List<User>> GetUsers() => usersStorage.LoadAsync();
 
-    public void AddUser(User user)
+    public async Task AddUser(User user)
     {
-        user.Id = _context.Users.Any() ? _context.Users.Max(x => x.Id) + 1 : 1;
-        _context.Users.Add(user);
+        var users = (await usersStorage.LoadAsync()).ToList();
+        user.Id = users.Count == 0 ? 1 : users.Max(x => x.Id) + 1;
+        await usersStorage.AddAsync(user);
     }
 }
