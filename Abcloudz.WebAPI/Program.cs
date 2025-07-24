@@ -1,8 +1,15 @@
+using Abcloudz.WebAPI;
+using Abcloudz.WebAPI.Storage;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services
+    .AddScoped<UserRepository>()
+    .AddSingleton<DbContext>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -19,6 +26,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseMiddleware<AbcloudzExceptionHandlerMiddleware>();
 
 app.MapControllers();
 
