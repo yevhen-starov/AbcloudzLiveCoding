@@ -1,3 +1,5 @@
+using Abcloudz.Database.Settings;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace Abcloudz.Database;
@@ -10,10 +12,11 @@ public interface IDataStorage<T>
 
 public class FileStorage<T> : IDataStorage<T>
 {
-    private readonly string _filePath = "data/users.json";
+    private readonly string _filePath;
 
-    public FileStorage()
+    public FileStorage(IOptions<StorageSettings> options)
     {
+        _filePath = options.Value.FilePath;
         EnsureFileExists();
     }
 
