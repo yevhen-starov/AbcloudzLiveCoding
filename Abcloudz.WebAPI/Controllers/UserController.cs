@@ -11,9 +11,9 @@ namespace Abcloudz.WebAPI.Controllers
     {
         [HttpGet]
         [Route("users")]
-        public IEnumerable<UserInfoDto> GetUsers()
+        public IEnumerable<UserInfoDto> GetUsers([FromQuery] UserInfoFilterModel filterModel)
         {
-            return new GetUsersQuery(repository).Handle();
+            return new GetUsersQuery(repository).Handle(filterModel);
         }
         
         [HttpPost]

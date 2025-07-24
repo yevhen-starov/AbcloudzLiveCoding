@@ -11,7 +11,7 @@ public class UserRepository
         this._context = _context;
     }
     
-    public List<User> GetUsers()
+    public IEnumerable<User> GetUsers()
     {
         return _context.Users;
     }
