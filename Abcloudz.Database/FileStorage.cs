@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Abcloudz.WebAPI.Storage;
+namespace Abcloudz.Database;
 
 public interface IDataStorage<T>
 {

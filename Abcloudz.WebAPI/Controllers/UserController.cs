@@ -1,12 +1,13 @@
-using Abcloudz.WebAPI.Commands;
-using Abcloudz.WebAPI.Queries;
-using Abcloudz.WebAPI.Storage;
+using Abcloudz.Application;
+using Abcloudz.Application.Commands;
+using Abcloudz.Application.Domain;
+using Abcloudz.Application.Queries;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Abcloudz.WebAPI.Controllers;
 
 [ApiController]
-public class UserController(UserRepository repository) : ControllerBase
+public class UserController(IRepository<User> repository) : ControllerBase
 {
     [HttpGet]
     [Route("users")]

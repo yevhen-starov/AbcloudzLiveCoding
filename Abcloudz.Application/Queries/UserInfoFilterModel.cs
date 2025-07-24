@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Abcloudz.WebAPI.Queries;
+namespace Abcloudz.Application.Queries;
 
 public class UserInfoFilterModel
 {

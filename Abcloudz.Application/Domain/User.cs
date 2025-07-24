@@ -1,4 +1,4 @@
-namespace Abcloudz.WebAPI.Domain;
+namespace Abcloudz.Application.Domain;
 
 public class User
 {

@@ -1,9 +1,8 @@
-using Abcloudz.WebAPI.Domain;
-using Abcloudz.WebAPI.Storage;
+using Abcloudz.Application.Domain;
 
-namespace Abcloudz.WebAPI.Commands;
+namespace Abcloudz.Application.Commands;
 
-public class AddUserCommand(UserRepository userRepository)
+public class AddUserCommand(IRepository<User> userRepository)
 {
     public Task Handle(AddUserDto userDto)
     {

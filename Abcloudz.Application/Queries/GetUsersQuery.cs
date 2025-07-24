@@ -1,8 +1,8 @@
-using Abcloudz.WebAPI.Storage;
+using Abcloudz.Application.Domain;
 
-namespace Abcloudz.WebAPI.Queries;
+namespace Abcloudz.Application.Queries;
 
-public class GetUsersQuery(UserRepository userRepository)
+public class GetUsersQuery(IRepository<User> userRepository)
 {
     public async Task<IEnumerable<UserInfoDto>> Handle(UserInfoFilterModel filterModel)
     {

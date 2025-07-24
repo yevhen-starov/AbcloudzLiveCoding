@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Abcloudz.WebAPI.Commands;
+namespace Abcloudz.Application.Commands;
 
 public class AddUserDto
 {

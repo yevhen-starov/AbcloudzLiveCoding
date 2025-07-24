@@ -1,8 +1,9 @@
-using Abcloudz.WebAPI.Domain;
+using Abcloudz.Application;
+using Abcloudz.Application.Domain;
 
-namespace Abcloudz.WebAPI.Storage;
+namespace Abcloudz.Database;
 
-public class UserRepository(IDataStorage<User> usersStorage)
+public class UserRepository(IDataStorage<User> usersStorage) : IRepository<User>
 {
     public Task<List<User>> GetUsers() => usersStorage.LoadAsync();
 
