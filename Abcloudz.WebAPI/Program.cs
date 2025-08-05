@@ -1,4 +1,5 @@
 using Abcloudz.WebAPI.BusinessLayer;
+using Abcloudz.WebAPI.BusinessLayer.Abstractions;
 using Abcloudz.WebAPI.DataLayer;
 using Abcloudz.WebAPI.Middleware;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<IFileService, FileService>();
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

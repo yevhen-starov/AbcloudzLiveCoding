@@ -1,7 +1,7 @@
 ﻿using Abcloudz.WebAPI.DataLayer.DTOs;
 using Abcloudz.WebAPI.DataLayer.Entities;
 
-namespace Abcloudz.WebAPI.BusinessLayer
+namespace Abcloudz.WebAPI.BusinessLayer.Abstractions
 {
 	public interface ICustomerService
 	{
