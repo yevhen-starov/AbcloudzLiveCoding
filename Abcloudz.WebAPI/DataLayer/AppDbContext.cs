@@ -7,7 +7,7 @@ namespace Abcloudz.WebAPI.DataLayer
 	{
 		public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-		public DbSet<Customer> Customers { get; set; }
+		public DbSet<User> Users { get; set; }
 	}
 
 }

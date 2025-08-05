@@ -6,40 +6,40 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Abcloudz.WebAPI.BusinessLayer
 {
-	public class CustomerService : ICustomerService
+	public class UserService : IUserService
 	{
 		private readonly AppDbContext _dbContext;
 
-		public CustomerService(AppDbContext _dbContext)
+		public UserService(AppDbContext _dbContext)
 		{
 			this._dbContext = _dbContext;
 		}
 
-		public async Task<IEnumerable<Customer>> GetAllAsync()
+		public async Task<IEnumerable<User>> GetAllAsync()
 		{
-			return await _dbContext.Customers.ToListAsync();
+			return await _dbContext.Users.ToListAsync();
 		}
 
-		public async Task<Customer> GetByIdAsync(Guid id)
+		public async Task<User> GetByIdAsync(Guid id)
 		{
-			return await _dbContext.Customers.FindAsync(id);
+			return await _dbContext.Users.FindAsync(id);
 		}
 
-		public async Task<Customer> CreateAsync(CustomerCreateDto customerDto)
+		public async Task<User> CreateAsync(UserCreateDto customerDto)
 		{
-			Customer customer = new Customer
+			User customer = new User
 			{
 				Id = Guid.NewGuid(),
 				Name = customerDto.Name,
 				Email = customerDto.Email,
 			};
 
-			_dbContext.Customers.Add(customer);
+			_dbContext.Users.Add(customer);
 			await _dbContext.SaveChangesAsync();
 			return customer;
 		}
 
-		public async Task<bool> UpdateAsync(Guid id, Customer customer)
+		public async Task<bool> UpdateAsync(Guid id, User customer)
 		{
 			if (id != customer.Id) return false;
 
@@ -57,10 +57,10 @@ namespace Abcloudz.WebAPI.BusinessLayer
 
 		public async Task<bool> DeleteAsync(Guid id)
 		{
-			var customer = await _dbContext.Customers.FindAsync(id);
+			var customer = await _dbContext.Users.FindAsync(id);
 			if (customer == null) return false;
 
-			_dbContext.Customers.Remove(customer);
+			_dbContext.Users.Remove(customer);
 			await _dbContext.SaveChangesAsync();
 			return true;
 		}

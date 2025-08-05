@@ -2,7 +2,7 @@
 
 namespace Abcloudz.WebAPI.DataLayer.DTOs
 {
-	public class CustomerCreateDto
+	public class UserCreateDto
 	{
 		[Required(ErrorMessage = "Name is required")]
 		[StringLength(100, ErrorMessage = "Name must be mo more then 100 symbols")]

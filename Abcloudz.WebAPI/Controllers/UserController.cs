@@ -8,30 +8,30 @@ namespace Abcloudz.WebAPI.Controllers
 	[Route("[controller]")]
 	public class UserController : ControllerBase
 	{
-		private readonly ICustomerService _customerService;
+		private readonly IUserService _userService;
 
 		public UserController(
-			ICustomerService _customerService)
+			IUserService _customerService)
 		{
-			this._customerService = _customerService;
+			this._userService = _customerService;
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> Create([FromBody] CustomerCreateDto dto)
+		public async Task<IActionResult> Create([FromBody] UserCreateDto dto)
 		{
 			if (dto == null)
 			{
 				throw new ArgumentNullException(nameof(dto));
 			}
 
-			var customer = await _customerService.CreateAsync(dto);
+			var customer = await _userService.CreateAsync(dto);
 			return Ok(new { Id = customer.Id });
 		}
 
 		[HttpGet]
 		public async Task<IActionResult> GetAll()
 		{
-			var customers = await _customerService.GetAllAsync();
+			var customers = await _userService.GetAllAsync();
 			return Ok(customers);
 		}
 
