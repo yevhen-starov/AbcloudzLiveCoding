@@ -22,7 +22,7 @@ namespace Abcloudz.WebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Abcloudz.WebAPI.DataLayer.Entities.Customer", b =>
+            modelBuilder.Entity("Abcloudz.WebAPI.DataLayer.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace Abcloudz.WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Abcloudz.WebAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250805110342_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250805162953_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace Abcloudz.WebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Abcloudz.WebAPI.DataLayer.Entities.Customer", b =>
+            modelBuilder.Entity("Abcloudz.WebAPI.DataLayer.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace Abcloudz.WebAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }
