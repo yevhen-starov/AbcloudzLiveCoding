@@ -1,6 +1,7 @@
 using Abcloudz.WebAPI.BusinessLayer.Abstractions;
 using Abcloudz.WebAPI.Common.Filters;
 using Abcloudz.WebAPI.DataLayer.DTOs;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Abcloudz.WebAPI.Controllers
@@ -10,19 +11,24 @@ namespace Abcloudz.WebAPI.Controllers
 	public class UserController : ControllerBase
 	{
 		private readonly IUserService _userService;
+		private readonly IValidator<UserCreateDto> _validator;
 
 		public UserController(
-			IUserService _customerService)
+			IUserService _customerService,
+			IValidator<UserCreateDto> validator)
 		{
-			this._userService = _customerService;
+			_userService = _customerService;
+			_validator = validator;
 		}
 
 		[HttpPost]
 		public async Task<IActionResult> Create([FromBody] UserCreateDto dto)
 		{
-			if (dto == null)
+			var validationResult = await _validator.ValidateAsync(dto);
+
+			if (!validationResult.IsValid)
 			{
-				throw new ArgumentNullException(nameof(dto));
+				throw new ValidationException(validationResult.Errors);
 			}
 
 			var customer = await _userService.CreateAsync(dto);
