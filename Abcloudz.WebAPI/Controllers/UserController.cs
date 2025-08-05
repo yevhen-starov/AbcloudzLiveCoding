@@ -41,14 +41,16 @@ namespace Abcloudz.WebAPI.Controllers
 		[HttpGet]
 		public async Task<IActionResult> GetAllAsync([FromQuery] Filter<UserGetDto> filter, CancellationToken cancellationToken)
 		{
-			var result = await _userService.GetAllAsync(filter, cancellationToken);
+			var result = await _userService.GetFiltered(filter, cancellationToken);
 			return Ok(result);
 		}
 
 		[HttpPost("download")]
 		public async Task<IActionResult> DownloadUsers([FromBody] DownloadUsersRequestDto request)
 		{
-			var fileBytes = await _fileService.SaveUsersToFileAsync(request.Filename, request.Users);
+			var users = await _userService.GetAllAsync();
+
+			var fileBytes = await _fileService.SaveUsersToFileAsync(request.Filename, users);
 
 			return File(fileBytes, "application/json", request.Filename);
 		}

@@ -7,7 +7,8 @@ namespace Abcloudz.WebAPI.BusinessLayer.Abstractions
 {
 	public interface IUserService
 	{
-		Task<IPagedList<UserGetDto>> GetAllAsync(Filter<UserGetDto> filter, CancellationToken cancellationToken);
+		Task<IPagedList<UserGetDto>> GetFiltered(Filter<UserGetDto> filter, CancellationToken cancellationToken);
+		Task<List<UserGetDto>> GetAllAsync();
 		Task<User> GetByIdAsync(Guid id);
 		Task<User> CreateAsync(UserCreateDto customer);
 		Task<bool> UpdateAsync(Guid id, User customer);

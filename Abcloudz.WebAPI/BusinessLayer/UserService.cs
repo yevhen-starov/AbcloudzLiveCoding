@@ -17,7 +17,7 @@ namespace Abcloudz.WebAPI.BusinessLayer
 			this._dbContext = _dbContext;
 		}
 
-		public async Task<IPagedList<UserGetDto>> GetAllAsync(Filter<UserGetDto> filter, CancellationToken cancellationToken)
+		public async Task<IPagedList<UserGetDto>> GetFiltered(Filter<UserGetDto> filter, CancellationToken cancellationToken)
 		{
 			IQueryable<User> query = _dbContext.Users.AsQueryable();
 
@@ -45,6 +45,18 @@ namespace Abcloudz.WebAPI.BusinessLayer
 		public async Task<User> GetByIdAsync(Guid id)
 		{
 			return await _dbContext.Users.FindAsync(id);
+		}
+
+		public async Task<List<UserGetDto>> GetAllAsync()
+		{
+			return await _dbContext.Users
+				.Select(u => new UserGetDto
+				{
+					Id = u.Id,
+					Name = u.Name,
+					Email = u.Email
+				})
+				.ToListAsync();
 		}
 
 		public async Task<User> CreateAsync(UserCreateDto customerDto)
