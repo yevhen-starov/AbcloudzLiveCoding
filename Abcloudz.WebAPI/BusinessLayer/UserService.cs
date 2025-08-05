@@ -1,4 +1,6 @@
 ﻿using Abcloudz.WebAPI.BusinessLayer.Abstractions;
+using Abcloudz.WebAPI.Common.Filters;
+using Abcloudz.WebAPI.Common.PagedList;
 using Abcloudz.WebAPI.DataLayer;
 using Abcloudz.WebAPI.DataLayer.DTOs;
 using Abcloudz.WebAPI.DataLayer.Entities;
@@ -15,9 +17,29 @@ namespace Abcloudz.WebAPI.BusinessLayer
 			this._dbContext = _dbContext;
 		}
 
-		public async Task<IEnumerable<User>> GetAllAsync()
+		public async Task<IPagedList<UserGetDto>> GetAllAsync(Filter<UserGetDto> filter, CancellationToken cancellationToken)
 		{
-			return await _dbContext.Users.ToListAsync();
+			IQueryable<User> query = _dbContext.Users.AsQueryable();
+
+			if (!string.IsNullOrWhiteSpace(filter.Filters?.Name))
+			{
+				query = query.Where(u => u.Name.Contains(filter.Filters.Name));
+			}
+
+			var totalCount = await query.CountAsync(cancellationToken);
+
+			var items = await query
+				.Skip((filter.Page - 1) * filter.PageSize)
+				.Take(filter.PageSize)
+				.Select(u => new UserGetDto
+				{
+					Id = u.Id,
+					Name = u.Name,
+					Email = u.Email
+				})
+				.ToListAsync(cancellationToken);
+
+			return new PagedList<UserGetDto>(items, filter.Page, filter.PageSize, totalCount);
 		}
 
 		public async Task<User> GetByIdAsync(Guid id)

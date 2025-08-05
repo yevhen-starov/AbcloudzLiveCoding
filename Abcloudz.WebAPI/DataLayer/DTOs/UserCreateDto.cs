@@ -6,10 +6,10 @@ namespace Abcloudz.WebAPI.DataLayer.DTOs
 	{
 		[Required(ErrorMessage = "Name is required")]
 		[StringLength(100, ErrorMessage = "Name must be mo more then 100 symbols")]
-		public string Name { get; set; }
+		public required string Name { get; set; }
 
 		[Required(ErrorMessage = "Email is required")]
 		[EmailAddress(ErrorMessage = "Incorrect email")]
-		public string Email { get; set; }
+		public required string Email { get; set; }
 	}
 }

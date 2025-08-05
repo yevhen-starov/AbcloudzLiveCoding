@@ -1,4 +1,5 @@
 using Abcloudz.WebAPI.BusinessLayer.Abstractions;
+using Abcloudz.WebAPI.Common.Filters;
 using Abcloudz.WebAPI.DataLayer.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,10 +30,10 @@ namespace Abcloudz.WebAPI.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GetAll()
+		public async Task<IActionResult> GetAllAsync([FromQuery] Filter<UserGetDto> filter, CancellationToken cancellationToken)
 		{
-			var customers = await _userService.GetAllAsync();
-			return Ok(customers);
+			var result = await _userService.GetAllAsync(filter, cancellationToken);
+			return Ok(result);
 		}
 
 	}

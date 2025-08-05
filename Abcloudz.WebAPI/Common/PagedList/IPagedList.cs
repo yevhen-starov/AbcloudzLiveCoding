@@ -1,4 +1,4 @@
-﻿namespace Abcloudz.WebAPI.Common
+﻿namespace Abcloudz.WebAPI.Common.PagedList
 {
 	public interface IPagedList<T>
 	{
